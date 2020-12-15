@@ -1,0 +1,25 @@
+{
+  "name": "UrbanDictionary",
+  "version": "1.0.0",
+  "description": "App using Sammy.js and Handlebars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RossieK/UrbanDictionary.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RossieK/UrbanDictionary/issues"
+  },
+  "homepage": "https://github.com/RossieK/UrbanDictionary#readme",
+  "dependencies": {
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1",
+    "sammy": "^0.7.6"
+  }
+}

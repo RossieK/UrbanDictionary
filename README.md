@@ -1,2 +1,2 @@
 # UrbanDictionary
-App using Sammy.js
+App using Sammy.js and Handlebars

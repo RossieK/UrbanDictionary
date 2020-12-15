@@ -1,5 +1,5 @@
 html {
-    background-image: url("../images/inaki-del-olmo-NIJuEQw0RKg-unsplash.jpg");
+    background-image: url("../images/wp4833275.jpg");
     position: relative;
     background-repeat: repeat-y;
     background-size: cover;
@@ -12,7 +12,8 @@ body {
     letter-spacing: 0.1em;
 }
 
-header, footer {
+header,
+footer {
     background-color: darkslategray;
     color: white;
     width: 100%;

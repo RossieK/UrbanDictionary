@@ -53,7 +53,7 @@ async function patch(url, body) {
     return request(url, 'PATCH', body);
 }
 
-async function login(email, password) {
+export async function login(email, password) {
     let response = await post(endpoints.LOGIN + apiKey, {
         email,
         password
@@ -66,7 +66,7 @@ async function login(email, password) {
     return data;
 }
 
-async function register(email, password) {
+export async function register(email, password) {
     let res = await post(endpoints.REGISTER + apiKey, {
         email,
         password

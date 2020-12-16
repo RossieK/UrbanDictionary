@@ -101,3 +101,7 @@ export async function getById(id) {
     record._id = id;
     return record;
 }
+
+export async function editArticle(id, article) {
+    return patch(host(endpoints.ARTICLE_BY_ID + id), article);
+}

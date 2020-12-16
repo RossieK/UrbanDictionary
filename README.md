@@ -1,2 +1,2 @@
 # UrbanDictionary
-App using Sammy.js and Handlebars
+App using Sammy.js, Handlebars and Firebase as a backend

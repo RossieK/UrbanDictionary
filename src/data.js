@@ -105,3 +105,7 @@ export async function getById(id) {
 export async function editArticle(id, article) {
     return patch(host(endpoints.ARTICLE_BY_ID + id), article);
 }
+
+function async function deleteById(id) {
+    return del(host(endpoints.ARTICLE_BY_ID + id));
+}

@@ -6,7 +6,8 @@ const databaseUrl = 'https://urbandictionary-app-default-rtdb.firebaseio.com/';
 const endpoints = {
     LOGIN: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
     REGISTER: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=',
-    ARTICLES: 'articles'
+    ARTICLES: 'articles',
+    ARTICLE_BY_ID: 'articles/'
 };
 
 function host(url) {
@@ -93,4 +94,10 @@ export async function createArticle(article) {
 export async function getAll() {
     const records = await get(host(endpoints.ARTICLES));
     return objectToArray(records);
+}
+
+export async function getById(id) {
+    const record = await get(host(endpoints.ARTICLE_BY_ID + id));
+    record._id = id;
+    return record;
 }

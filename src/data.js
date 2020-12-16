@@ -1,4 +1,4 @@
-import { getUserData, getUserId, setUserData } from './util.js';
+import { getUserData, getUserId, objectToArray, setUserData } from './util.js';
 
 const apiKey = 'AIzaSyApC3AP6QZDA9_GRoIIU6ZY47hkqBByazE';
 const databaseUrl = 'https://urbandictionary-app-default-rtdb.firebaseio.com/';
@@ -88,4 +88,9 @@ export async function createArticle(article) {
     }, article);
 
     post(host(endpoints.ARTICLES), data);
+}
+
+export async function getAll() {
+    const records = await get(host(endpoints.ARTICLES));
+    return objectToArray(records);
 }

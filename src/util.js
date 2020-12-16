@@ -13,12 +13,15 @@ export function getUserData() {
 }
 
 export function getUserId() {
+    const auth = sessionStorage.getItem('auth');
 
+    if (auth !== null) {
+        return JSON.parse(auth).localId;
+    } else {
+        return null;
+    }
 }
-const auth = sessionStorage.getItem('auth');
 
-if (auth !== null) {
-    return JSON.parse(auth).localId;
-} else {
-    return null;
+export function objectToArray(data) {
+    return Object.entries(data).map(([key, value]) => Object.assign({ _id: key }, value));
 }

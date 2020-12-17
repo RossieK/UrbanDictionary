@@ -1,6 +1,6 @@
 //globals Sammy
 
-import { homePage } from '../src/controllers/catalog.js';
+import { homePage } from './controllers/catalog.js';
 import * as api from './data.js';
 
 window.api = api;

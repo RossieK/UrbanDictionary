@@ -64,11 +64,9 @@ export async function login(email, password) {
         returnSecureToken: true
     });
 
-    let data = await response.json();
+    setUserData(response);
 
-    setUserData(data);
-
-    return data;
+    return response;
 }
 
 export async function register(email, password) {

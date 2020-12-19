@@ -1,5 +1,5 @@
-import { addPartials } from '../util.js';
-import { createArticle, getAll, getById } from '../data.js';
+import { addPartials, getUserId } from '../util.js';
+import { createArticle, getAll, getById, editArticle } from '../data.js';
 
 export async function homePage() {
     await addPartials(this);
@@ -18,7 +18,8 @@ export async function detailsPage() {
     const article = await getById(this.params.id);
     const context = {
         user: this.app.userData,
-        article
+        article,
+        canEdit: article._ownerId == getUserId()
     }
 
     this.partial('/templates/catalog/detailsArticle.hbs', context);
@@ -42,6 +43,43 @@ export async function postCreate(context) {
             throw new Error('All fields are required!');
         } else {
             await createArticle({
+                title,
+                category,
+                content
+            });
+            context.redirect('/home');
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function editPage() {
+    await addPartials(this);
+
+    const article = await getById(this.params.id);
+
+    if (article._ownerId !== getUserId()) {
+        this.redirect('/home');
+    } else {
+
+        const context = {
+            user: this.app.userData,
+            article
+        }
+
+        this.partial('/templates/catalog/editArticle.hbs', context);
+    }
+}
+
+export async function postEdit(context) {
+    const { title, category, content } = context.params;
+
+    try {
+        if (title.length == 0 || category.length == 0 || content.length == 0) {
+            throw new Error('All fields are required!');
+        } else {
+            await editArticle(context.params.id, {
                 title,
                 category,
                 content

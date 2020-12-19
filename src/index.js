@@ -1,7 +1,7 @@
 //globals Sammy
 
 import { homePage } from './controllers/catalog.js';
-import { registerPage, loginPage } from './controllers/user.js';
+import { registerPage, loginPage, postRegister } from './controllers/user.js';
 import * as api from './data.js';
 
 window.api = api;
@@ -25,6 +25,7 @@ const app = Sammy('#root', function(context) {
     this.get('/home', homePage);
     this.get('/register', registerPage);
     this.get('/login', loginPage);
+    this.post('/register', (context) => { postRegister(context); });
 });
 
 app.run();

@@ -7,6 +7,7 @@ export async function homePage() {
     const data = { "articles": await getAll() };
 
     const context = data;
+    context.user = this.app.userData;
 
     this.partial('/templates/catalog/home.hbs', context);
 }

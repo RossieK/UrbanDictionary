@@ -1,4 +1,4 @@
-import { register } from "../data.js";
+import { login, register } from "../data.js";
 import { addPartials } from "../util.js"
 
 export async function registerPage() {
@@ -21,6 +21,21 @@ export async function postRegister(context) {
             throw new Error('Passwords don\'t match!');
         } else {
             await register(email, password);
+            context.redirect('/home');
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function postLogin(context) {
+    const { email, password } = context.params;
+
+    try {
+        if (email.length == 0 || password.length == 0) {
+            throw new Error('All fields are required!');
+        } else {
+            await login(email, password);
             context.redirect('/home');
         }
     } catch (err) {

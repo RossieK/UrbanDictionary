@@ -1,5 +1,5 @@
 import { addPartials, getUserId } from '../util.js';
-import { createArticle, getAll, getById, editArticle } from '../data.js';
+import { createArticle, getAll, getById, editArticle, deleteById } from '../data.js';
 
 export async function homePage() {
     await addPartials(this);
@@ -86,6 +86,16 @@ export async function postEdit(context) {
             });
             context.redirect('/home');
         }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function deleteArticle() {
+    try {
+        const id = this.params.id;
+        await deleteById(id);
+        this.redirect('/home')
     } catch (err) {
         console.error(err);
     }

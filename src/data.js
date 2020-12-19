@@ -38,7 +38,7 @@ async function request(url, method, body) {
     let response = await fetch(url, options);
     let data = await response.json();
 
-    if (data.hasOwnProperty('error')) {
+    if (data && data.hasOwnProperty('error')) {
         const message = data.error.message;
         throw new Error(message);
     }

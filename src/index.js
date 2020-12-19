@@ -1,6 +1,6 @@
 //globals Sammy
 
-import { createPage, detailsPage, homePage, postCreate, editPage, postEdit } from './controllers/catalog.js';
+import { createPage, detailsPage, homePage, postCreate, editPage, postEdit, deleteArticle } from './controllers/catalog.js';
 import { registerPage, loginPage, postRegister, postLogin } from './controllers/user.js';
 import { getUserData } from './util.js'
 import * as api from './data.js';
@@ -32,6 +32,8 @@ const app = Sammy('#root', function(context) {
 
     this.get('/edit/:id', editPage);
     this.post('/edit/:id', (context) => { postEdit(context); });
+
+    this.get('/delete/:id', deleteArticle);
 });
 
 app.run();

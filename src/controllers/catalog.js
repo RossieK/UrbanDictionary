@@ -1,5 +1,5 @@
 import { addPartials } from '../util.js';
-import { createArticle, getAll } from '../data.js';
+import { createArticle, getAll, getById } from '../data.js';
 
 export async function homePage() {
     await addPartials(this);
@@ -10,6 +10,18 @@ export async function homePage() {
     context.user = this.app.userData;
 
     this.partial('/templates/catalog/home.hbs', context);
+}
+
+export async function detailsPage() {
+    await addPartials(this);
+
+    const article = await getById(this.params.id);
+    const context = {
+        user: this.app.userData,
+        article
+    }
+
+    this.partial('/templates/catalog/detailsArticle.hbs', context);
 }
 
 export async function createPage() {

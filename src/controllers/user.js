@@ -20,7 +20,8 @@ export async function postRegister(context) {
         } else if (password !== rePass) {
             throw new Error('Passwords don\'t match!');
         } else {
-            await register(email, password);
+            const result = await register(email, password);
+            context.app.userData = result;
             context.redirect('/home');
         }
     } catch (err) {
@@ -35,7 +36,8 @@ export async function postLogin(context) {
         if (email.length == 0 || password.length == 0) {
             throw new Error('All fields are required!');
         } else {
-            await login(email, password);
+            const result = await login(email, password);
+            context.app.userData = result;
             context.redirect('/home');
         }
     } catch (err) {

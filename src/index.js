@@ -1,6 +1,6 @@
 //globals Sammy
 
-import { homePage } from './controllers/catalog.js';
+import { createPage, homePage, postCreate } from './controllers/catalog.js';
 import { registerPage, loginPage, postRegister, postLogin } from './controllers/user.js';
 import { getUserData } from './util.js'
 import * as api from './data.js';
@@ -18,10 +18,15 @@ const app = Sammy('#root', function(context) {
     //Home routes
     this.get('/', homePage);
     this.get('/home', homePage);
+
     this.get('/register', registerPage);
-    this.get('/login', loginPage);
     this.post('/register', (context) => { postRegister(context); });
+
+    this.get('/login', loginPage);
     this.post('/login', (context) => { postLogin(context); });
+
+    this.get('/create', createPage);
+    this.post('/create', (context) => { postCreate(context); });
 });
 
 app.run();

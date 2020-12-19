@@ -86,7 +86,7 @@ export async function createArticle(article) {
         _ownerId: getUserId()
     }, article);
 
-    post(host(endpoints.ARTICLES), data);
+    return post(host(endpoints.ARTICLES), data);
 }
 
 export async function getAll() {

@@ -69,6 +69,10 @@ export async function login(email, password) {
         returnSecureToken: true
     });
 
+    if (response.hasOwnProperty('error')) {
+        return;
+    }
+
     setUserData(response);
 
     return response;

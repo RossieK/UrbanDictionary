@@ -39,11 +39,16 @@ export async function postLogin(context) {
 
     try {
         if (email.length == 0 || password.length == 0) {
-            throw new Error('All fields are required!');
+            errorNotify('All fields are required!');
         } else {
             const result = await login(email, password);
+
+            if (result.hasOwnProperty('error')) {
+                return;
+            }
+
             context.app.userData = result;
-            context.redirect('/home');
+            successNotify("Login successful!", context, "/home");
         }
     } catch (err) {
         console.error(err);

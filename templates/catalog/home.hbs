@@ -1,5 +1,6 @@
 {{>header}}
 <div class="content">
+    {{#if user}}
     <section class="js">
         <h2>JavaScript</h2>
         <div class="articles">
@@ -14,5 +15,8 @@
             {{/each}}
         </div>
     </section>
+    {{else}}
+    <h1 class="not-logged-in">Please <a href="/login" class="login-link">login</a> in order to see the articles added.</h1>
+    {{/if}}
 </div>
 {{>footer}}

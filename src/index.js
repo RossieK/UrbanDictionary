@@ -15,7 +15,7 @@ const app = Sammy('#root', function(context) {
     const user = getUserData();
     this.userData = user;
 
-    //Home routes
+    //Routes
     this.get('/', homePage);
     this.get('/home', homePage);
 

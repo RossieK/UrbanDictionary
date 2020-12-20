@@ -2,23 +2,19 @@
 <div class="container">
     <form action="/create" method="POST">
         <fieldset>
-            <legend>Create article</legend>
+            <legend>Add new word to the dictionary</legend>
             <p class="field title">
-                <input type="text" id="title" name="title" placeholder="Arrays">
-                <label for="title">Title:</label>
+                <input type="text" id="word" name="word" placeholder="BRB">
+                <label for="title">Word:</label>
             </p>
 
-            <p class="field category">
-                <input type="text" id="category" name="category" placeholder="JavaScript">
-                <label for="category">Category:</label>
-            </p>
             <p class="field content">
-                <textarea name="content" id="content"></textarea>
-                <label for="content">Content:</label>
+                <textarea name="description" id="description" placeholder="The short term for 'Be Right Back'."></textarea>
+                <label for="content">Description:</label>
             </p>
 
             <p class="field submit">
-                <button class="btn submit" type="submit">Create</button>
+                <button class="btn submit" type="submit">Add</button>
             </p>
 
         </fieldset>

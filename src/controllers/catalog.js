@@ -1,4 +1,4 @@
-import { addPartials, getUserId } from '../util.js';
+import { addPartials, getUserId, errorNotify, successNotify } from '../util.js';
 import { createArticle, getAll, getById, editArticle, deleteById } from '../data.js';
 
 export async function homePage() {
@@ -36,18 +36,17 @@ export async function createPage() {
 }
 
 export async function postCreate(context) {
-    const { title, category, content } = context.params;
+    const { word, description } = context.params;
 
     try {
-        if (title.length == 0 || category.length == 0 || content.length == 0) {
-            throw new Error('All fields are required!');
+        if (word.length == 0 || description.length == 0) {
+            errorNotify('All fields are required!');
         } else {
             await createArticle({
-                title,
-                category,
-                content
+                word,
+                description
             });
-            context.redirect('/home');
+            successNotify('Word successfully added!', context, '/home');
         }
     } catch (err) {
         console.error(err);

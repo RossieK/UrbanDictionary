@@ -1,4 +1,4 @@
-import { getUserData, getUserId, objectToArray, setUserData } from './util.js';
+import { getUserData, getUserId, objectToArray, setUserData, errorNotify } from './util.js';
 
 const apiKey = 'AIzaSyApC3AP6QZDA9_GRoIIU6ZY47hkqBByazE';
 const databaseUrl = 'https://urbandictionary-app-default-rtdb.firebaseio.com/';
@@ -40,7 +40,7 @@ async function request(url, method, body) {
 
     if (data && data.hasOwnProperty('error')) {
         const message = data.error.message;
-        throw new Error(message);
+        errorNotify(message);
     }
 
     return data;
@@ -80,6 +80,10 @@ export async function register(email, password) {
         password,
         returnSecureToken: true
     });
+
+    if (res.hasOwnProperty('error')) {
+        return;
+    }
 
     setUserData(res);
 

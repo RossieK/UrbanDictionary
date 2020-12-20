@@ -40,3 +40,24 @@ export async function addPartials(context) {
         footer: partials[1]
     }
 }
+
+export function errorNotify(message) {
+    document.getElementById("errorSection").style.display = "block";
+    document.getElementById("errorBox").textContent = message;
+
+    setTimeout(function() {
+        document.getElementById("errorSection").style.display = "none";
+        document.getElementById("errorBox").textContent = "";
+    }, 3000);
+}
+
+export function successNotify(message, context, route) {
+    document.getElementById("successSection").style.display = "block";
+    document.getElementById("successBox").textContent = message;
+
+    setTimeout(function() {
+        document.getElementById("successSection").style.display = "none";
+        document.getElementById("successBox").textContent = "";
+        context.redirect(route);
+    }, 3000);
+}

@@ -1,5 +1,5 @@
 import { login, register } from "../data.js";
-import { addPartials } from "../util.js"
+import { addPartials, errorNotify, successNotify } from "../util.js"
 
 export async function registerPage() {
     await addPartials(this);
@@ -16,13 +16,18 @@ export async function postRegister(context) {
 
     try {
         if (email.length == 0 || password.length == 0) {
-            throw new Error('All fields are required!');
+            errorNotify('All fields are required!');
         } else if (password !== rePass) {
-            throw new Error('Passwords don\'t match!');
+            errorNotify('Passwords don\'t match!');
         } else {
             const result = await register(email, password);
+
+            if (result.hasOwnProperty('error')) {
+                return;
+            }
+
             context.app.userData = result;
-            context.redirect('/home');
+            successNotify("Registration successful!", context, "/home");
         }
     } catch (err) {
         console.error(err);

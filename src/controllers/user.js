@@ -1,5 +1,5 @@
 import { login, register } from "../data.js";
-import { addPartials, errorNotify, successNotify } from "../util.js"
+import { addPartials, errorNotify, successNotify, clearUserData } from "../util.js"
 
 export async function registerPage() {
     await addPartials(this);
@@ -53,4 +53,10 @@ export async function postLogin(context) {
     } catch (err) {
         console.error(err);
     }
+}
+
+export function logout(context) {
+    clearUserData();
+    context.app.userData = '';
+    successNotify("Logout successful!", context, "/home");
 }

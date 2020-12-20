@@ -12,6 +12,10 @@ export function getUserData() {
     }
 }
 
+export function clearUserData() {
+    sessionStorage.removeItem('auth');
+}
+
 export function getUserId() {
     const auth = sessionStorage.getItem('auth');
 

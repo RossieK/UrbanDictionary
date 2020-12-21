@@ -72,18 +72,17 @@ export async function editPage() {
 }
 
 export async function postEdit(context) {
-    const { title, category, content } = context.params;
+    const { word, description } = context.params;
 
     try {
-        if (title.length == 0 || category.length == 0 || content.length == 0) {
-            throw new Error('All fields are required!');
+        if (word.length == 0 || description.length == 0) {
+            errorNotify('All fields are required!');
         } else {
             await editArticle(context.params.id, {
-                title,
-                category,
-                content
+                word,
+                description
             });
-            context.redirect('/home');
+            successNotify('Word successfully edited!', context, '/home');
         }
     } catch (err) {
         console.error(err);

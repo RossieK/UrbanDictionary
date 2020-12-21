@@ -102,9 +102,14 @@ export async function createArticle(article) {
     return post(host(endpoints.ARTICLES), data);
 }
 
-export async function getAll() {
+export async function getMy() {
     const records = await get(host(endpoints.ARTICLES));
-    return objectToArray(records);
+    return objectToArray(records).filter(record => record._ownerId == getUserId());
+}
+
+export async function getOther() {
+    const records = await get(host(endpoints.ARTICLES));
+    return objectToArray(records).filter(record => record._ownerId !== getUserId());
 }
 
 export async function getById(id) {

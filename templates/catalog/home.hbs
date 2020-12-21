@@ -1,13 +1,27 @@
 {{>header}}
 <div class="content">
     {{#if user}}
-    <section class="js">
-        <h2>JavaScript</h2>
+    <section>
+        <h2>Words added by me</h2>
         <div class="articles">
-            {{#each articles}}
+            {{#each myArticles}}
             <article>
-                <h3>{{this.title}}</h3>
-                <p>{{this.content}}</p>
+                <h3>{{this.word}}</h3>
+                <p>{{this.description}}</p>
+                <a href="/details/{{this._id}}" class="btn details-btn">Details</a>
+            </article>
+            {{else}}
+            <h3 class="no-articles">No articles yet</h3>
+            {{/each}}
+        </div>
+    </section>
+    <section>
+        <h2>Words added by other users</h2>
+        <div class="articles">
+            {{#each otherArticles}}
+            <article>
+                <h3>{{this.word}}</h3>
+                <p>{{this.description}}</p>
                 <a href="/details/{{this._id}}" class="btn details-btn">Details</a>
             </article>
             {{else}}
@@ -16,7 +30,8 @@
         </div>
     </section>
     {{else}}
-    <h1 class="not-logged-in">Please <a href="/login" class="login-link">login</a> in order to see the articles added.</h1>
+    <h1 class="not-logged-in">Please <a href="/login" class="login-link">login</a> in order to see the articles added.
+    </h1>
     {{/if}}
 </div>
 {{>footer}}

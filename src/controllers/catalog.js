@@ -1,10 +1,10 @@
 import { addPartials, getUserId, errorNotify, successNotify } from '../util.js';
-import { createArticle, getAll, getById, editArticle, deleteById } from '../data.js';
+import { createArticle, getById, editArticle, deleteById, getMy, getOther } from '../data.js';
 
 export async function homePage() {
     await addPartials(this);
 
-    const data = { "articles": await getAll() };
+    const data = { "myArticles": await getMy(), "otherArticles": await getOther() };
 
     const context = data;
     context.user = this.app.userData;
